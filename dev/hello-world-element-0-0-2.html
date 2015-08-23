@@ -1,0 +1,35 @@
+<link rel="import" href="../../polymer/polymer.html">
+
+<script>
+
+  Polymer({
+    is: 'hello-world-element-0-0-2',
+    properties: {
+      name: {
+        type: String,
+        value:  function(){
+          return 'anonymous';
+        }
+      },
+      greetings: {
+        type: String,
+        computed: 'generateGreet(name)'
+      },
+      changed: {
+        type: Number,
+        readOnly: true,
+        value: 0
+      }
+    },
+    generateGreet: function(name) {
+      this._setChanged((this.changed || 0) + 1);
+      var greet = 'Hello ' + this.name + '!';
+      if (this.changed > 1){
+         greet = greet + ' You have changed this name ' + this.changed + ' times already...';
+      }
+      this.textContent = greet;
+      return greet;
+    }
+  });
+
+</script>
